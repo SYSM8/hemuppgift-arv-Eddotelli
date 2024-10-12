@@ -24,6 +24,42 @@ namespace Hemuppgift_Arv_Temp
             return userID;
         }
 
-        //public abstract TakePins : Board
+        public abstract void takePins(Board board);
     }
+
+    //----------------------------------------- KLASSER -----------------------------------------//
+
+    //-------- HumanPlayer ---------//
+    public class HumanPlayer : Player
+    {
+        public HumanPlayer(string human) : base(human) { }
+
+        public override void takePins(Board board)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{userID}, din tur!");
+            Console.ResetColor();
+            board.takePins(0);
+        }
+    }
+
+
+        //-------- HumanPlayer ---------//
+    public class ComputerPlayer : Player
+    {
+        public ComputerPlayer(string computer) : base(computer) { }
+
+        public override void takePins(Board board)
+        {
+            Random slump = new Random();
+            int pins = slump.Next(1,2); // Slumpval för datorn. //
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{userID}, din tur!");
+            Console.ResetColor();
+
+            board.takePins(pins);
+        }
+    }
+    
 }

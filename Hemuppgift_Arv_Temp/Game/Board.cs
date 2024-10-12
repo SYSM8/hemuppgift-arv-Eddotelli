@@ -25,10 +25,17 @@ namespace Hemuppgift_Arv_Temp.Game
             Console.WriteLine("--------- / SISTA PINNEN VINNER SPELET / ---------");
             Console.ResetColor();
 
-            Console.WriteLine("\n| Spelare XXX | Välj hur många pinnar du vill ta? ");
-            Console.Write("- Pinne/ar: "); pins = Convert.ToInt32(Console.ReadLine()); // Läser in spelarens val. //
-            noPins -= pins; // Minskar antalet pinnar baserat på spelarens val.
+            Console.WriteLine("\n| ---------- Spelare XXX | Hur många pinnar du vill ta? ---------- |");
+            Console.Write("\n- Pinne/ar: "); pins = Convert.ToInt32(Console.ReadLine()); // Läser in spelarens val. //
+            noPins -= pins; // Minskar antalet pinnar baserat på spelarens val. //
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nSpelaren XXX tog {pins} pinnar."); // Skriver ut antal pinnar som spelare tog den rundan. //
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine($"{noPins} pinnar kvar."); // Visar hur många pinnar som återstår. //
+            Console.ResetColor();
         }
 
         public int getNoPins()
