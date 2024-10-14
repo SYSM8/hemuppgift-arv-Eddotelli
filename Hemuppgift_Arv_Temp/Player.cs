@@ -130,5 +130,45 @@ namespace Hemuppgift_Arv_Temp
 
             Console.WriteLine("--------------------------------------------------------------------------------------------\n");
         }
-    }   
+    }
+
+    public class SmarterComputerPlayer : Player
+    {
+        public SmarterComputerPlayer(string sComputer) : base(sComputer) { }
+
+        public override void takePins(Board board)
+        {
+            int pins;
+            int remainder = board.getNoPins() % 4;
+
+            if (remainder == 0) 
+            {
+                pins = new Random().Next(1,4); // Slumpval för datorn. //
+            }
+            else
+            {
+                pins = remainder; // Tar ett antal pinnar som lämnar en multipel av 4. //
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"{userID}'s tur, den tar {pins} pinne/ar!");
+            Console.ResetColor();
+
+            Console.Write(" - ");
+
+            board.takePins(pins); // Minskar antal pinnar med rundans drag från datorn. //
+
+            // Ifall datorn når tar sista pinnen, skrivs ett meddelande om den vann. //
+            if (board.getNoPins() == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{userID} vinner därmed spelet, tog den sista pinnen!");
+                Console.ResetColor();
+            }
+
+            Console.WriteLine("--------------------------------------------------------------------------------------------\n");
+
+
+        }
+    }
 }
