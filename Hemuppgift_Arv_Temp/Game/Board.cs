@@ -27,7 +27,7 @@ namespace Hemuppgift_Arv_Temp.Game
             if (noPins < 0) noPins = 0; // Sätter antalet pinnar till noll så att det inte visar ett negativt tal vid spelets slut. //
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine($"Det är nu {noPins} pinnar kvar.\n");
+            Console.Write($"Det är nu {noPins} pinnar kvar.\n");
             Console.ResetColor();
         }
 

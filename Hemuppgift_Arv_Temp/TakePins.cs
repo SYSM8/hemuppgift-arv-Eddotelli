@@ -11,11 +11,27 @@ namespace Hemuppgift_Arv_Temp
             board.setUp(10);
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("--------- / SISTA PINNEN VINNER SPELET / ---------\n");
+            Console.WriteLine("--------- \\ SISTA PINNEN VINNER SPELET / ----------\n");
             Console.ResetColor();
 
+            Console.WriteLine(" ---------- \\ ENTER NAME below playa / -----------\n");
+            Console.Write("                      "); 
+            
+            Console.ForegroundColor= ConsoleColor.Cyan;
+            string player = Console.ReadLine();
+            Console.ResetColor();
+            
+            Console.Write($"\n             Player: {player} >>> ");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" || READY ||\n");
+            Console.ResetColor();
+            
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>|<<<<<<<<<<<<<<<<<<<<<<<\n");
+            
+
             // Mänskliga (Användaren) spelare. //
-            Player human = new HumanPlayer("Spelare");
+            Player human = new HumanPlayer(player);
 
             // Dator spelare. //
             Player computer = new ComputerPlayer("Dator");

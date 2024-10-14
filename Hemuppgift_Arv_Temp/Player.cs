@@ -39,6 +39,7 @@ namespace Hemuppgift_Arv_Temp
         {
             int pins = 0;
 
+            // Loopar enbart igenom om inmatningen är fel från användaren.
             while (true) 
             {
                 try
@@ -58,9 +59,25 @@ namespace Hemuppgift_Arv_Temp
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     pins = Convert.ToInt32(Console.ReadLine());
                     Console.ResetColor();
+
+                    // Om inmatningen är mindre eller lika med noll och högre än 3, skickar ett felmeddelande. //
+                    if (pins <= 0 || pins > 3) 
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
                     break;
                 }
-                catch (FormatException)
+                // Fångar upp inmatning som är allt annat än en siffra, skriver även ut ett felmeddelande. //
+                catch ( FormatException )
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("\n!! --- FEL INMATNING --- !!");
+                    Console.ResetColor();
+
+                    Console.WriteLine(" - Var god ange ett giltigt heltal mellan 1-3.\n");
+                }
+                // Fångar upp inmatning som är under eller lika med noll och över tre, skriver även ut ett felmeddelande. //
+                catch ( ArgumentOutOfRangeException x)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("\n!! --- FEL INMATNING --- !!");
@@ -72,12 +89,20 @@ namespace Hemuppgift_Arv_Temp
            
             board.takePins(pins); // Minskar antal pinnar med rundans drag från spelaren. //
 
+            // Ifall användaren når tar sista pinnen, skrivs ett meddelande om hen vann. //
+            if (board.getNoPins() == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{userID} vinner spelet, tog den sista pinnen!");
+                Console.ResetColor();
+            }
+
             Console.WriteLine("------------\n");
         }
     }
 
 
-        //-------- HumanPlayer ---------//
+        //-------- ComputerPlayer ---------//
     public class ComputerPlayer : Player
     {
         public ComputerPlayer(string computer) : base(computer) { }
@@ -93,7 +118,15 @@ namespace Hemuppgift_Arv_Temp
 
             Console.Write(" - ");
 
-            board.takePins(pins);
+            board.takePins(pins); // Minskar antal pinnar med rundans drag från datorn. //
+
+            // Ifall datorn når tar sista pinnen, skrivs ett meddelande om den vann. //
+            if (board.getNoPins() == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{userID} vinner därmed spelet, tog den sista pinnen!");
+                Console.ResetColor();
+            }
 
             Console.WriteLine("--------------------------------------------------------------------------------------------\n");
         }
